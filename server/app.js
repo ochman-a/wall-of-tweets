@@ -20,7 +20,7 @@ twit.get('search/tweets', { q: '#startups', count: 30, result_type: 'recent'  },
 });
 
 io.on('connection', function(client) {
-    console.log('Client connected...');
+    //console.log('Client connected...');
     client.emit('allTweets', allTweets);
 
     client.on('getTweetDetails', function(id) {
@@ -30,11 +30,11 @@ io.on('connection', function(client) {
     });
 });
 
-let stream = twit.stream('statuses/filter', {track: '#startups'});
+/*let stream = twit.stream('statuses/filter', {track: '#startups'});
 stream.on('tweet', function(tweet) {
     console.log('New tweet received --> emit it to all clients !');
     io.sockets.emit('newTweet', tweet);
-});
+});*/
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
